@@ -1,0 +1,44 @@
+#!/bin/sh
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(head -n 1 "$COMMIT_MSG_FILE")
+
+# Allowed commit types
+TYPES="init|feat|fix|docs|refactor|test|chore|opt|build|revert|hotfix"
+
+# Pattern: type: short description
+PATTERN="^($TYPES): .+"
+
+if ! echo "$COMMIT_MSG" | grep -Eq "$PATTERN"; then
+  echo ""
+  echo "❌ Invalid commit message format."
+  echo ""
+  echo "Expected format:"
+  echo "  <type>: <short description>"
+  echo ""
+  echo "Choose the type based on what you DID:"
+  echo ""
+  echo "  init     - first-time setup or initialization"
+  echo "  feat     - added new behavior, system, class, or content"
+  echo "  fix      - fixed a bug, typo, broken logic, or placement"
+  echo "  hotfix   - emergency or temporary fix"
+  echo "  refactor - restructured code or scenes (no behavior change)"
+  echo "  opt      - improved performance or efficiency"
+  echo "  docs     - documentation or comments only"
+  echo "  chore    - maintenance, cleanup, tooling, or assets"
+  echo "  test     - added or updated tests or playtesting"
+  echo "  build    - build system, CI, or export settings"
+  echo "  revert   - undo a previous commit"
+  echo ""
+  echo "Examples:"
+  echo "  feat: add health regeneration system"
+  echo "  fix: correct enemy spawn location"
+  echo "  refactor: reorganize AI scripts by behavior"
+  echo "  docs: update README with setup instructions"
+  echo ""
+  echo "Tip: Ask yourself — why does this commit exist?"
+  echo ""
+  exit 1
+fi
+
+exit 0

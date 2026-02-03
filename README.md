@@ -41,18 +41,27 @@ Follow these steps **in order** before starting the assignment.
 3. Set the **location** to this repository’s root folder
 4. Name the Unity project folder:**ProjectName-Unity**
 
+>[!NOTE]
+> **ProjectName** is the name of your project, typically the name of the repository. 
+
 ---
 
 ### 2. Add Unity `.gitignore` and `.gitattributes` 
-   - Move the **`.gitignore`** file into the **ProjectName-Unity** folder
-   - Rename the **`Unity.gitattributes`** to **`.gitattributes`** and move into the **ProjectName-Unity** folder
+   - Move the **`Unity.gitignore`** file into the **ProjectName-Unity** folder
+   - Move the **`Unity.gitattributes`** file into the **ProjectName-Unity** folder
+   - Inside the **ProjectName-Unity** folder, rename 
+      - **`Unity.gitignore`** to **`.gitignore`**
+      - **`Unity.gitattributes`** to **`.gitattributes`**
 
 These files ensure:
 - Temporary and generated files are not committed
 - Line endings and file formats are handled correctly
 
 >[!WARNING]
-> These files must live **inside the Unity project folder**, not the root repo.
+> These files must live **inside the Unity project folder**, not the root repo. 
+
+>[!NOTE]
+> The repository root contains a **`.gitignore`** file that ignores IDE-specific configuration folders, log files, build outputs, and other temporary files that should not be committed.
 
 ---
 
@@ -74,6 +83,44 @@ This package helps maintain a clean and readable hierarchy in Unity.
 
 ---
 
+### 4. One-Time Git Hook Setup 
+
+This repository uses **Git hooks** to help enforce proper commit message formatting.
+
+1. **Open** Git Bash
+2. Use the **`cd`** command to change to the repo directory 
+
+Example:
+```bash
+cd D/Students/YourName/CSG3023/26sp-csg3023-sandbox-YourGitHubUserName
+```
+> [!NOTE]
+> If you set up or cloned this repository using an **IDE** (Rider, VS Code, etc.),  
+> you do **not** need to open Git Bash separately.
+> You can instead:
+> 1. Open the **Terminal inside your IDE**
+> 2. Ensure the terminal shell is set to **Git Bash**
+> 3. The terminal will already be **pointing at your project directory**
+> 
+> In this case, you can skip the `cd` step and run the setup command directly.
+
+3. **Run** the setup script
+```bash
+./automation/setup-hooks.sh
+```
+If you see:
+```text
+Hooks installed!
+```
+
+You are done ✅
+
+> [!IMPORTANT]
+>  **Git hooks are NOT included automatically when you clone a repository.**  
+> These steps must be repeated if you clone this repo on a **new computer**.
+
+---
+
 ### 4. Commit and Push Your Work
 
 Before moving on:
@@ -82,7 +129,7 @@ Before moving on:
   - Unity project opens correctly
   - `.gitignore` and `.gitattributes` are present
   - Required package is installed
-  - Script templates are configured
+  - Git hooks are installed
  
 
 >[!IMPORTANT]
