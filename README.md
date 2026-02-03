@@ -18,7 +18,7 @@ Instead:
   - Design notes
   - References
   - Planning files
-  - READMEs and other supporting materials
+  - README and other supporting materials
 
 - The **Unity project** will live inside its own subfolder within this repo.
 
@@ -90,7 +90,7 @@ To reduce these issues, you must configure **Unity Smart Merge (UnityYAMLMerge)*
 1. Locate UnityYAMLMerge
 - Find the UnityYAMLMerge tool on your system
 - **Windows** examples: C:\Program Files\Unity\Hub\Editor<UnityVersion>\Editor\Data\Tools\UnityYAMLMerge.exe
--
+
 2. Edit the Local **Git Config File**
 - Inside the **root folder** locate the **hidden** `git` folder
 - Open the `config` file located inside
