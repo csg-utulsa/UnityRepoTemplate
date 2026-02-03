@@ -82,8 +82,36 @@ You must import the **Simple Unity Hierarchy Folder** package.
 This package helps maintain a clean and readable hierarchy in Unity.
 
 ---
+### 4. Configure Unity Smart Merge
 
-### 4. One-Time Git Hook Setup 
+Unity scenes and prefabs are stored as YAML files, which can cause merge conflicts.  
+To reduce these issues, you must configure **Unity Smart Merge (UnityYAMLMerge)** manually using a Git configuration file.
+
+1. Locate UnityYAMLMerge
+- Find the UnityYAMLMerge tool on your system
+- **Windows** examples: C:\Program Files\Unity\Hub\Editor<UnityVersion>\Editor\Data\Tools\UnityYAMLMerge.exe
+-
+2. Edit the Local **Git Config File**
+- Inside the **root folder** locate the **hidden** `git` folder
+- Open the `config` file located inside
+- Add the following lines to your .git/config file:
+
+```
+    [merge] 
+     tool = unityyamlmerge 
+[mergetool "unityyamlmerge"] 
+     trustExitCode = false 
+     keepTemporaries = true 
+     keepBackup = false 
+     cmd = \"C:\\Program Files\\Unity\\Editor\\<Version Number>\\Data\\Tools\\UnityYAMLMerge.exe\" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"`
+```
+
+>[!Caution]
+>The path to your UnityYAMLMerge.exe file will depend on your Unity Editor version. Change the `<Version Number>` to the version you are using. For example: **6000.3.0f1**
+
+---
+
+### 5. One-Time Git Hook Setup 
 
 This repository uses **Git hooks** to help enforce proper commit message formatting.
 
@@ -121,7 +149,7 @@ You are done ✅
 
 ---
 
-### 4. Commit and Push Your Work
+### 6. Commit and Push Your Work
 
 Before moving on:
 
