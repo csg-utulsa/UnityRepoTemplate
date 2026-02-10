@@ -49,7 +49,7 @@ Follow these steps **in order** before starting the assignment.
 ### 2. Add Unity `.gitignore` and `.gitattributes` 
    - Move the **`Unity.gitignore`** file into the **ProjectName-Unity** folder
    - Move the **`Unity.gitattributes`** file into the **ProjectName-Unity** folder
-   - Inside the **ProjectName-Unity** folder, rename 
+   - Inside the **ProjectName-Unity** folder, **RENAME**
       - **`Unity.gitignore`** to **`.gitignore`**
       - **`Unity.gitattributes`** to **`.gitattributes`**
 
