@@ -46,7 +46,7 @@ Follow these steps **in order** before starting the assignment.
 
 ---
 
-### 2. Add Unity `.gitignore` and `.gitattributes` 
+### 2. Add Unity `.gitignore` and `Unity.gitattributes` 
    - Move the **`Unity.gitignore`** file into the **ProjectName-Unity** folder
    - Move the **`Unity.gitattributes`** file into the **ProjectName-Unity** folder
    - Inside the **ProjectName-Unity** folder, **RENAME**
