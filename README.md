@@ -35,85 +35,52 @@ Follow these steps **in order** before starting the assignment.
 ---
 
 ### 1. Create the Unity Project
-
 1. Open **Unity Hub**
-2. Create a **new Unity project**
-3. Set the **location** to this repository’s root folder
-4. Name the Unity project folder:**ProjectName-Unity**
+2. Click the **+ New Project** button
+3. Choose the **Core Universal 3D** template (_unless otherwise instructed_)
+4. Set the **location** to this repository’s root folder
+5. Name the Unity project folder: `ProjectName-Unity`
 
 >[!NOTE]
-> **ProjectName** is the name of your project, typically the name of the repository. 
+> **ProjectName** is the name of your project, typically the name of the repository.
+>
 
 ---
+### 2. Configure Ignore & Attribute Rules
+We use a layered configuration to manage files. You must manually "activate" these rules by renaming files.
 
-### 2. Add Unity `.gitignore` and `Unity.gitattributes` 
-   - Move the **`Unity.gitignore`** file into the **ProjectName-Unity** folder
-   - Move the **`Unity.gitattributes`** file into the **ProjectName-Unity** folder
-   - Inside the **ProjectName-Unity** folder, **RENAME**
-      - **`Unity.gitignore`** to **`.gitignore`**
-      - **`Unity.gitattributes`** to **`.gitattributes`**
+#### A. Activate the Root Attributes (LFS & SmartMerge)
+The repository root contains a file named `Unity.gitattributes`. This contains the rules for Large File Storage (LFS) and the SmartMerge logic you just configured.
+1.  Locate `Unity.gitattributes` in the repository root.
+2.  RENAME it to `.gitattributes`.
+    
+> [!NOTE]
+> This file must stay in the root folder to work.
+> It is named `Unity.gitattributes` in the template because GitHub restricts active LFS triggers on template repositories; renaming it "activates" the tracking for your project.
+> 
 
-These files ensure:
-- Temporary and generated files are not committed
-- Line endings and file formats are handled correctly
+#### B. The Unity Project Ignore Rules
+1.  Locate the `Unity.gitignore` file (also in the root folder).
+2.  **MOVE** this file into your `ProjectName-Unity` folder.
+3.  **RENAME** it from `Unity.gitignore` to `.gitignore`.
+    
+> [!WARNING]
+> This file must live **inside the Unity project folder**, not the root.
+> It handles the engine-specific junk like the `Library/` folder, which can be several gigabytes of generated data.
 
->[!WARNING]
-> These files must live **inside the Unity project folder**, not the root repo. 
-
->[!NOTE]
-> The repository root contains a **`.gitignore`** file that ignores IDE-specific configuration folders, log files, build outputs, and other temporary files that should not be committed.
-
----
-
-### 3. Import Required Unity Package
-
-You must import the **Simple Unity Hierarchy Folder** package.
-
-#### Package Source
-🔗 https://github.com/ProfessorAkram/SimpleUnityHierarchyFolder
-
-#### How to Import
-1. Open your Unity project
-2. Open **Package Manager**
-3. Click **➕** → *Add package from Git URL*
-4. Paste the repository URL
-5. Import the package
-
-This package helps maintain a clean and readable hierarchy in Unity.
+> [!NOTE]
+> Inside the root folder, there is another`.gitignore` file. **Leave this here.**
+> It ignores IDE-specific folders (VS Code/Visual Studio), system logs, and build outputs that happen outside of the Unity folder.
+> 
 
 ---
-### 4. Configure Unity Smart Merge
+### 3. Run the Automation Script
+This repository template includes a setup script designed to automate your environment. It handles three critical tasks:
+-   Git Automation (Commit Rules): Installs a linter that ensures your commit messages follow the project's categorization (e.g., `feat:`, `fix:`, `refactor:`).
+-   Branch Protection & Naming (Pre-Push): Installs a "gatekeeper" that prevents you from pushing to the wrong branch (`main`/`release`) and ensures your branch name follows the `type/description` format.
+-   Unity YAML Merge: Configures Unity's "SmartMerge" tool on your machine to automatically resolve conflicts in Scenes and Prefabs.
 
-Unity scenes and prefabs are stored as YAML files, which can cause merge conflicts.  
-To reduce these issues, you must configure **Unity Smart Merge (UnityYAMLMerge)** manually using a Git configuration file.
-
-1. Locate UnityYAMLMerge
-- Find the UnityYAMLMerge tool on your system
-- **Windows** examples: C:\Program Files\Unity\Hub\Editor<UnityVersion>\Editor\Data\Tools\UnityYAMLMerge.exe
-
-2. Edit the Local **Git Config File**
-- Inside the **root folder** locate the **hidden** `git` folder
-- Open the `config` file located inside
-- Add the following lines to your .git/config file:
-
-```
-    [merge] 
-     tool = unityyamlmerge 
-[mergetool "unityyamlmerge"] 
-     trustExitCode = false 
-     keepTemporaries = true 
-     keepBackup = false 
-     cmd = \"C:\\Program Files\\Unity\\Editor\\<Version Number>\\Data\\Tools\\UnityYAMLMerge.exe\" merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGED"`
-```
-
->[!Caution]
->The path to your UnityYAMLMerge.exe file will depend on your Unity Editor version. Change the `<Version Number>` to the version you are using. For example: **6000.3.0f1**
-
----
-
-### 5. One-Time Git Hook Setup 
-
-This repository uses **Git hooks** to help enforce proper commit message formatting.
+#    
 
 1. **Open** Git Bash
 2. Use the **`cd`** command to change to the repo directory 
@@ -134,14 +101,45 @@ cd D/Students/YourName/CSG3023/26sp-csg3023-sandbox-YourGitHubUserName
 
 3. **Run** the setup script
 ```bash
-./automation/setup-hooks.sh
+./automation/setup-unity-repo.sh
 ```
-If you see:
-```text
-Hooks installed!
-```
+4.  Follow the Prompts:
+    -   **Drive Letter:** Type the letter where Unity is installed (usually `C`) and hit Enter.
+    -   **Unity Version:** Type your exact Unity version (e.g., `6000.3.6f1`). You can find this in the Unity Hub under the "Installs" tab.
 
-You are done ✅
+#### What to look for:
+-   The script will display `✅ SUCCESS` for both the **Git Automation** and **Unity YAML Merge** sections.
+-   A final verification check will run at the end. If it says `VERIFIED`, your setup is complete.
+
+> [!IMPORTANT]
+> This setup is LOCAL to your computer. Git hooks and Unity SmartMerge settings are stored in the hidden `.git` folder, which is not synced to GitHub for security reasons.
+> 
+> You MUST run the automation script every time you:
+> -   Clone the project onto a new computer (e.g., switching from a lab PC to a laptop).
+> -   Re-clone the project after deleting your local folder.
+> -   Update Unity to a newer version (to ensure the SmartMerge path remains valid).
+> -   
+> If you don't run the script, your branch/commit rules won't work, and your Unity Scenes will likely break during merges!
+>
+---
+
+### 4. Import Required Unity Package
+
+You must import the **Simple Unity Hierarchy Folder** package.
+
+#### Package Source
+🔗 https://github.com/ProfessorAkram/SimpleUnityHierarchyFolder
+
+#### How to Import
+1. Open your Unity project
+2. Open **Package Manager**
+3. Click **➕** → *Add package from Git URL*
+4. Paste the repository URL
+5. Import the package
+
+This package helps maintain a clean and readable hierarchy in Unity.
+
+---
 
 > [!IMPORTANT]
 >  **Git hooks are NOT included automatically when you clone a repository.**  
