@@ -124,8 +124,9 @@ cd D/Students/YourName/CSG3023/26sp-csg3023-sandbox-YourGitHubUserName
 ---
 
 ### 4. Import Required Unity Package
-
-You must import the **Simple Unity Hierarchy Folder** package.
+To keep our Unity hierarchy organized, we will be using the **Simple Unity Hierarchy Folder** package.
+This package helps maintain a clean and readable hierarchy in Unity. 
+Use the steps below to install the package: 
 
 #### Package Source
 🔗 https://github.com/ProfessorAkram/SimpleUnityHierarchyFolder
@@ -137,17 +138,13 @@ You must import the **Simple Unity Hierarchy Folder** package.
 4. Paste the repository URL
 5. Import the package
 
-This package helps maintain a clean and readable hierarchy in Unity.
-
----
-
 > [!IMPORTANT]
->  **Git hooks are NOT included automatically when you clone a repository.**  
-> These steps must be repeated if you clone this repo on a **new computer**.
+>  All projects in this course require that this package be implemented and that the scene hierarchies be organized with folders.
+> 
 
 ---
 
-### 6. Commit and Push Your Work
+### 5. Commit and Push Your Work
 
 Before moving on:
 
@@ -157,9 +154,9 @@ Before moving on:
   - Required package is installed
   - Git hooks are installed
  
-
 >[!IMPORTANT]
 > **All setup work must be committed and pushed before beginning the assignment.**
+>
 
 ---
 
@@ -168,7 +165,6 @@ Before moving on:
 Once everything above is complete and pushed to GitHub, your project repo and Unity project are ready.
 
 From this point forward:
-
 - Follow assignment instructions
 - Commit frequently
 - Keep your repository organized and professional
