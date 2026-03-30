@@ -49,107 +49,40 @@ Follow these steps **in order** before starting the assignment.
 ### 2. Configure Ignore & Attribute Rules
 We use a layered configuration to manage files. You must manually "activate" these rules by renaming files.
 
-#### A. Activate the Root Attributes (LFS & SmartMerge)
-The repository root contains a file named `Unity.gitattributes`. This contains the rules for Large File Storage (LFS) and the SmartMerge logic you just configured.
-1.  Locate `Unity.gitattributes` in the repository root.
-2.  RENAME it to `.gitattributes`.
-    
-> [!NOTE]
-> This file must stay in the root folder to work.
-> It is named `Unity.gitattributes` in the template because GitHub restricts active LFS triggers on template repositories; renaming it "activates" the tracking for your project.
+#### A. Activate the Root Attributes (LFS)
+
+The repository root contains a file named `Unreal.gitattributes`. This contains rules for Large File Storage (LFS) for Unreal assets.
+
+1.  Locate `Unreal.gitattributes` in the repository root.
+2.  **RENAME** it to `.gitattributes`.
+
+> [!NOTE]  
+> This file must stay in the root folder to work.  
+> It is named `Unreal.gitattributes` in the template because GitHub restricts active LFS triggers on template repositories; renaming it "activates" tracking for your project.
 > 
 
-#### B. The Unity Project Ignore Rules
-1.  Locate the `Unity.gitignore` file (also in the root folder).
-2.  **MOVE** this file into your `ProjectName-Unity` folder.
-3.  **RENAME** it from `Unity.gitignore` to `.gitignore`.
-    
-> [!WARNING]
-> This file must live **inside the Unity project folder**, not the root.
-> It handles the engine-specific junk like the `Library/` folder, which can be several gigabytes of generated data.
+#### B. The Unreal Project Ignore Rules
+1.  Locate the `Unreal.gitignore` file (also in the root folder).
+2.  **MOVE** this file into your `ProjectName-Unreal` folder.
+3.  **RENAME** it from `Unreal.gitignore` to `.gitignore`.
 
-> [!NOTE]
-> Inside the root folder, there is another`.gitignore` file. **Leave this here.**
-> It ignores IDE-specific folders (VS Code/Visual Studio), system logs, and build outputs that happen outside of the Unity folder.
-> 
+> [!WARNING]  
+> This file must live **inside the Unreal project folder**, not the root.  
+> It handles the engine-specific junk like `Binaries/`, `Intermediate/`, and `Saved/` folders, which can be very large.
 
----
-### 3. Run the Automation Script
-This repository template includes a setup script designed to automate your environment. It handles three critical tasks:
--   Git Automation (Commit Rules): Installs a linter that ensures your commit messages follow the project's categorization (e.g., `feat:`, `fix:`, `refactor:`).
--   Branch Protection & Naming (Pre-Push): Installs a "gatekeeper" that prevents you from pushing to the wrong branch (`main`/`release`) and ensures your branch name follows the `type/description` format.
--   Unity YAML Merge: Configures Unity's "SmartMerge" tool on your machine to automatically resolve conflicts in Scenes and Prefabs.
+> [!NOTE]  
+> Inside the root folder, there is another `.gitignore` file. **Leave this here.**  
+> It ignores IDE-specific folders (VS Code, Rider, Visual Studio), system logs, and general files outside of the Unreal folder.
 
-#    
-
-1. **Open** Git Bash
-2. Use the **`cd`** command to change to the repo directory 
-
-Example:
-```bash
-cd D/Students/YourName/CSG3023/26sp-csg3023-sandbox-YourGitHubUserName
-```
-> [!NOTE]
-> If you set up or cloned this repository using an **IDE** (Rider, VS Code, etc.),  
-> you do **not** need to open Git Bash separately.
-> You can instead:
-> 1. Open the **Terminal inside your IDE**
-> 2. Ensure the terminal shell is set to **Git Bash**
-> 3. The terminal will already be **pointing at your project directory**
-> 
-> In this case, you can skip the `cd` step and run the setup command directly.
-
-3. **Run** the setup script
-```bash
-./automation/setup-unity-repo.sh
-```
-4.  Follow the Prompts:
-    -   **Drive Letter:** Type the letter where Unity is installed (usually `C`) and hit Enter.
-    -   **Unity Version:** Type your exact Unity version (e.g., `6000.3.6f1`). You can find this in the Unity Hub under the "Installs" tab.
-
-#### What to look for:
--   The script will display `✅ SUCCESS` for both the **Git Automation** and **Unity YAML Merge** sections.
--   A final verification check will run at the end. If it says `VERIFIED`, your setup is complete.
-
-> [!IMPORTANT]
-> This setup is LOCAL to your computer. Git hooks and Unity SmartMerge settings are stored in the hidden `.git` folder, which is not synced to GitHub for security reasons.
-> 
-> You MUST run the automation script every time you:
-> -   Clone the project onto a new computer (e.g., switching from a lab PC to a laptop).
-> -   Re-clone the project after deleting your local folder.
-> -   Update Unity to a newer version (to ensure the SmartMerge path remains valid).
-> -   
-> If you don't run the script, your branch/commit rules won't work, and your Unity Scenes will likely break during merges!
->
----
-
-### 4. Import Required Unity Package
-To keep our Unity hierarchy organized, we will be using the **Simple Unity Hierarchy Folder** package.
-This package helps maintain a clean and readable hierarchy in Unity. 
-Use the steps below to install the package: 
-
-#### Package Source
-🔗 https://github.com/ProfessorAkram/SimpleUnityHierarchyFolder
-
-#### How to Import
-1. Open your Unity project
-2. Open **Package Manager**
-3. Click **➕** → *Add package from Git URL*
-4. Paste the repository URL
-5. Import the package
-
-> [!IMPORTANT]
->  All projects in this course require that this package be implemented and that the scene hierarchies be organized with folders.
-> 
 
 ---
 
-### 5. Commit and Push Your Work
+### 3. Commit and Push Your Work
 
 Before moving on:
 
 - Verify:
-  - Unity project opens correctly
+  - Unreal project opens correctly
   - `.gitignore` and `.gitattributes` are present
   - Required package is installed
   - Git hooks are installed
