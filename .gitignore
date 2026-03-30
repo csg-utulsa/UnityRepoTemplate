@@ -1,23 +1,77 @@
-# Windows system files
-Thumbs.db
-Desktop.ini
-$RECYCLE.BIN/
+# =========================================================
+# General Repository-Wide .gitignore
+# Covers common OS, IDE, and log files across all projects
+# =========================================================
 
-# VS Code
-.vscode/
+# ---------------------------------------------------------
+# 🪟 Windows System Files
+# ---------------------------------------------------------
+Thumbs.db                # Windows thumbnail cache
+Desktop.ini              # Windows folder settings
+$RECYCLE.BIN/            # Windows recycle bin
+ehthumbs.db              # Windows media cache
+Icon?                    # Custom folder icons
+.DS_Store                # macOS folder metadata (cross-platform projects)
+*.lnk                    # Windows shortcut files
 
-# JetBrains Rider / IntelliJ IDEA
-/.idea/
-*.iml
+# ---------------------------------------------------------
+# 💻 Visual Studio Code
+# ---------------------------------------------------------
+.vscode/                 # VS Code workspace settings
 
-# Eclipse
-.project
-.classpath
-.settings/
+# ---------------------------------------------------------
+# 🧩 JetBrains Rider / IntelliJ IDEA
+# ---------------------------------------------------------
+.idea/                   # Project settings folder
+*.iml                    # Module files
 
-# NetBeans
-/nbproject/private/
+# ---------------------------------------------------------
+# 🌱 Eclipse
+# ---------------------------------------------------------
+.project                 # Eclipse project descriptor
+.classpath                # Eclipse classpath descriptor
+.settings/               # Eclipse project settings
 
-# Logs
-*.log
-*.log.*
+# ---------------------------------------------------------
+# 🌳 NetBeans
+# ---------------------------------------------------------
+/nbproject/private/      # NetBeans private settings
+
+# ---------------------------------------------------------
+# 📝 Logs
+# ---------------------------------------------------------
+*.log                    # Any log file
+*.log.*                  # Rotated / segmented logs
+
+# ---------------------------------------------------------
+# 🔧 Temporary Files / Editor Swaps
+# ---------------------------------------------------------
+*.tmp                    # Generic temp files
+*.swp                    # Vim swap files
+*.swo                    # Vim temporary swap files
+*.bak                    # Backup files
+*.orig                   # Merge conflict backups
+*.rej                    # Patch rejects
+
+# ---------------------------------------------------------
+# 📦 Compressed / Package Files (optional)
+# ---------------------------------------------------------
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ---------------------------------------------------------
+# 🐍 Python / Node / Other common ignores (optional)
+# ---------------------------------------------------------
+__pycache__/             # Python compiled cache
+*.pyc                    # Python compiled files
+node_modules/            # Node.js dependencies
+
+# ---------------------------------------------------------
+# 💡 Notes
+# ---------------------------------------------------------
+# This .gitignore is intended as a repo-wide baseline.
+# Engine-specific rules (Unity, Unreal) should still go in their respective project folders.
+# Files ignored here are OS / IDE / log related and should never be committed.
