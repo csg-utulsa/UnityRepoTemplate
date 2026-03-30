@@ -1,12 +1,37 @@
-# Define macros (only works in top-level gitattributes files)
+# =========================================================
+# Unity Comprehensive .gitattributes
+# Covers: Merge strategies, diff behavior, Git LFS,
+# and GitHub linguist configuration
+# =========================================================
+
+
+# =========================================================
+# 🔧 ATTRIBUTE MACROS (DEFINE REUSABLE RULES)
+# =========================================================
+
+# Git LFS macro:
+# - Stores large files outside Git history
+# - Prevents repo bloat
 [attr]lfs               filter=lfs diff=lfs merge=lfs -text
+
+# Unity JSON files:
+# - Normalize line endings
+# - Improves GitHub language detection
 [attr]unity-json        eol=lf linguist-language=json
+
+# Unity YAML files:
+# - Uses Unity Smart Merge (unityyamlmerge)
+# - Prevents merge conflicts in scenes/prefabs
 [attr]unity-yaml        merge=unityyamlmerge eol=lf linguist-language=yaml
 
-# Optionally collapse Unity YAML files on GitHub diffs
+# Optional: collapse YAML diffs on GitHub (less readable but cleaner PRs)
 # [attr]unity-yaml        merge=unityyamlmerge text linguist-language=yaml linguist-generated
 
-# Unity source files
+
+# =========================================================
+# 🧠 UNITY SOURCE / SHADER FILES
+# =========================================================
+
 *.cginc                 text
 *.compute               text linguist-language=hlsl
 *.cs                    text diff=csharp
@@ -14,7 +39,11 @@
 *.raytrace              text linguist-language=hlsl
 *.shader                text
 
-# Unity JSON files
+
+# =========================================================
+# 📦 UNITY JSON-BASED FILES
+# =========================================================
+
 *.asmdef                unity-json
 *.asmref                unity-json
 *.index                 unity-json
@@ -22,12 +51,20 @@
 *.shadergraph           unity-json
 *.shadersubgraph        unity-json
 
-# Unity UI Toolkit files
+
+# =========================================================
+# 🧩 UNITY UI TOOLKIT FILES
+# =========================================================
+
 *.tss                   text diff=css linguist-language=css
 *.uss                   text diff=css linguist-language=css
 *.uxml                  text linguist-language=xml linguist-detectable
 
-# Unity YAML files
+
+# =========================================================
+# 📄 UNITY YAML FILES (CRITICAL FOR MERGING)
+# =========================================================
+
 *.anim                  unity-yaml
 *.asset                 unity-yaml
 *.brush                 unity-yaml
@@ -54,19 +91,32 @@
 *.terrainlayer          unity-yaml
 *.unity                 unity-yaml
 
-# "physic" for 3D but "physics" for 2D
+# Physics naming inconsistency (Unity quirk)
 *.physicMaterial        unity-yaml
 *.physicsMaterial2D     unity-yaml
 
-# Exclude from GitHub stats and diffs: third-party plugins, packages lock file
+
+# =========================================================
+# 📊 GITHUB LINGUIST SETTINGS (REPO CLEANUP)
+# =========================================================
+
+# Exclude large/vendor/plugin files from language stats & diffs
 Assets/Plugins/**           linguist-generated
 Packages/packages-lock.json linguist-generated
 
-# Unity LFS
+
+# =========================================================
+# 📦 GIT LFS: UNITY-SPECIFIC
+# =========================================================
+
 *.cubemap               lfs
 *.unitypackage          lfs
 
-# 3D models
+
+# =========================================================
+# 🎮 GIT LFS: 3D MODELS
+# =========================================================
+
 *.3dm                   lfs
 *.3ds                   lfs
 *.blend                 lfs
@@ -89,7 +139,11 @@ Packages/packages-lock.json linguist-generated
 *.stl                   lfs
 *.ztl                   lfs
 
-# Audio
+
+# =========================================================
+# 🔊 GIT LFS: AUDIO FILES
+# =========================================================
+
 *.aif                   lfs
 *.aiff                  lfs
 *.it                    lfs
@@ -100,7 +154,11 @@ Packages/packages-lock.json linguist-generated
 *.wav                   lfs
 *.xm                    lfs
 
-# Video
+
+# =========================================================
+# 🎬 GIT LFS: VIDEO FILES
+# =========================================================
+
 *.asf                   lfs
 *.avi                   lfs
 *.flv                   lfs
@@ -111,7 +169,11 @@ Packages/packages-lock.json linguist-generated
 *.ogv                   lfs
 *.wmv                   lfs
 
-# Images
+
+# =========================================================
+# 🖼️ GIT LFS: IMAGES / TEXTURES
+# =========================================================
+
 *.bmp                   lfs
 *.exr                   lfs
 *.gif                   lfs
@@ -127,7 +189,11 @@ Packages/packages-lock.json linguist-generated
 *.tiff                  lfs
 *.webp                  lfs
 
-# Compressed Archive
+
+# =========================================================
+# 📦 GIT LFS: COMPRESSED FILES
+# =========================================================
+
 *.7z                    lfs
 *.bz2                   lfs
 *.gz                    lfs
@@ -135,29 +201,60 @@ Packages/packages-lock.json linguist-generated
 *.tar                   lfs
 *.zip                   lfs
 
-# Compiled Dynamic Library
+
+# =========================================================
+# ⚙️ GIT LFS: BINARIES / LIBRARIES
+# =========================================================
+
 *.dll                   lfs
 *.pdb                   lfs
 *.so                    lfs
 
-# Fonts
+
+# =========================================================
+# 🔤 GIT LFS: FONTS
+# =========================================================
+
 *.otf                   lfs
 *.ttf                   lfs
 
-# Executable/Installer
+
+# =========================================================
+# 🚀 GIT LFS: EXECUTABLES / BUILDS
+# =========================================================
+
 *.apk                   lfs
 *.exe                   lfs
 
-# Documents
+
+# =========================================================
+# 📄 GIT LFS: DOCUMENTS
+# =========================================================
+
 *.pdf                   lfs
 
-# ETC
+
+# =========================================================
+# 🧪 GIT LFS: MISC / EDGE CASES
+# =========================================================
+
 *.a                     lfs
 *.reason                lfs
 *.rns                   lfs
 
-# Spine export file for Unity
+# Spine animation exports
 *.skel.bytes            lfs
 
-# Exceptions for .asset files such as lightning pre-baking
+
+# =========================================================
+# ⚠️ EXCEPTIONS / SPECIAL CASES
+# =========================================================
+
+# Force specific Unity asset to remain binary
+# (e.g., lighting bake data—merging is unsafe)
 LightingData.asset     binary
+
+
+# =========================================================
+# END OF FILE
+# =========================================================
