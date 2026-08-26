@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# Retrieve current branch name
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+
+# Allowed branch prefix types matching your commit types
+TYPES="init|feat|fix|docs|refactor|test|chore|opt|build|revert|hotfix"
+BRANCH_PATTERN="^($TYPES)/.+"
+
+# Protected branches that cannot be pushed to directly
+PROTECTED_BRANCHES="^(main|master|release)$"
+
+# 1. Block direct pushes to protected branches
+if echo "$BRANCH_NAME" | grep -Eq "$PROTECTED_BRANCHES"; then
+  echo ""
+  echo "❌ Direct push to '$BRANCH_NAME' is blocked."
+  echo "Please create a feature/bugfix branch and open a Pull Request."
+  echo ""
+  exit 1
+fi
+
+# 2. Enforce branch naming pattern (e.g., feat/health-system)
+if ! echo "$BRANCH_NAME" | grep -Eq "$BRANCH_PATTERN"; then
+  echo ""
+  echo "❌ Invalid branch name format: '$BRANCH_NAME'"
+  echo ""
+  echo "Expected format:"
+  echo "  <type>/<description>"
+  echo ""
+  echo "Examples:"
+  echo "  feat/health-system"
+  echo "  fix/enemy-spawn-bug"
+  echo "  refactor/ai-architecture"
+  echo ""
+  exit 1
+fi
+
+exit 0
