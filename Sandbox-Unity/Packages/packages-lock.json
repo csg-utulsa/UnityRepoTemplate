@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.professorakram.simpleunityhierarchyfolder": {
+      "version": "https://github.com/ProfessorAkram/SimpleUnityHierarchyFolder.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "cb370164c77bf09cfd33767f81c248a13298b00f"
+    },
     "com.unity.ai.navigation": {
       "version": "2.0.14",
       "depth": 0,
