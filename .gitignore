@@ -20,10 +20,24 @@ Icon?                    # Custom folder icons
 .vscode/                 # VS Code workspace settings
 
 # ---------------------------------------------------------
-# 🧩 JetBrains Rider / IntelliJ IDEA
+# 🧩 JetBrains Rider / IntelliJ IDEA (Unity Optimized)
 # ---------------------------------------------------------
-.idea/                   # Project settings folder
-*.iml                    # Module files
+# Ignore user-specific Rider files & caches
+.idea/.idea.*/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/shelf/
+.idea/contentModel.xml
+.idea/dataSources/
+.idea/dataSources.local.xml
+
+# CMake / Native C++ Rider build output (if applicable)
+cmake-build-*/
+
+# JetBrains Rider project module files
+*.iml
 
 # ---------------------------------------------------------
 # 🌱 Eclipse
