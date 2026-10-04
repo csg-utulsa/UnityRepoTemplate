@@ -77,10 +77,12 @@ The repository root contains a file named `Unity.gitattributes`. This contains t
 ---
 ### 3. Run the Automation Script
 This repository template includes a setup script designed to automate your environment. It handles three critical tasks:
--   Git Automation (Commit Rules): Installs a linter that ensures your commit messages follow the project's categorization (e.g., `feat:`, `fix:`, `refactor:`).
--   Branch Protection & Naming (Pre-Push): Installs a "gatekeeper" that prevents you from pushing to the wrong branch (`main`/`release`) and ensures your branch name follows the `type/description` format.
--   Unity YAML Merge: Configures Unity's "SmartMerge" tool on your machine to automatically resolve conflicts in Scenes and Prefabs.
+- **Git Automation (Commit Rules):** Installs a linter that ensures your commit messages follow the project's categorization (e.g., `feat:`, `fix:`, `refactor:`).
+- **Branch Protection & Naming (Pre-Push):** Installs a "gatekeeper" that prevents you from pushing to the wrong branch (`main`/`release`) and ensures your branch name follows the `type/description` format.
+- **Git LFS Initialization:** Registers local Git LFS filters and hooks so large binary assets (textures, 3D models, audio) are tracked properly across all IDEs and Git tools (including JetBrains Rider and VS Code).
+- **Unity YAML Merge:** Configures Unity's "SmartMerge" tool on your machine to automatically resolve conflicts in Scenes and Prefabs.
 
+---
 #    
 
 1. **Open** Git Bash
@@ -109,8 +111,8 @@ cd D/Students/YourName/CSG3023/26sp-csg3023-sandbox-YourGitHubUserName
     -   **Unity Version:** Type your exact Unity version (e.g., `6000.3.6f1`). You can find this in the Unity Hub under the "Installs" tab.
 
 #### What to look for:
--   The script will display `✅ SUCCESS` for both the **Git Automation** and **Unity YAML Merge** sections.
--   A final verification check will run at the end. If it says `VERIFIED`, your setup is complete.
+- The script will display `✅ SUCCESS` for **Git Automation**, **Git LFS**, and **Unity YAML Merge**.
+- A final verification check will run at the end. If it verifies both SmartMerge and Git LFS, your setup is complete.
 
 > [!IMPORTANT]
 > This setup is LOCAL to your computer. Git hooks and Unity SmartMerge settings are stored in the hidden `.git` folder, which is not synced to GitHub for security reasons.
