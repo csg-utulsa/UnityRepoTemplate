@@ -29,7 +29,21 @@ else
 fi
 
 # ---------------------------------------------------------
-# SECTION 2: SETTING UP UNITY YML MERGE (SMARTMERGE)
+# SECTION 2: SETTING UP GIT LFS
+# ---------------------------------------------------------
+echo ""
+echo ">>> SECTION 2: Initializing Git LFS..."
+
+if command -v git-lfs &> /dev/null; then
+    git lfs install
+    echo "✅ SUCCESS: Git LFS hooks and filters initialized."
+else
+    echo "⚠️  WARNING: Git LFS is not installed on this system."
+    echo "    Please download and install it from https://git-lfs.com/"
+fi
+
+# ---------------------------------------------------------
+# SECTION 3: SETTING UP UNITY YML MERGE (SMARTMERGE)
 # ---------------------------------------------------------
 echo ""
 echo ">>> SECTION 2: Configuring Unity YAML Merge..."
