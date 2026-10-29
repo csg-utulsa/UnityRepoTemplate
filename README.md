@@ -40,8 +40,8 @@ Follow these steps **in order** before starting the assignment.
 ### 1. Create Your Repository from the Template
 1. Open the CSG Repository Template on GitHub.
 2. Click **Use this template**, then select **Create a new repository**.
- 
-![Use this template](./docs/imgs/gitHub-use-template.png)
+
+<img src="./docs/imgs/gitHub-use-template.png" alt="Use this template" width="500px">
 
 3. Under **Owner**, select the correct **GitHub organization for your course** _(i.e., CSG-3023, CSG-3813, etc.) 
 4. Enter your repository name using the following format:
@@ -51,8 +51,8 @@ Follow these steps **in order** before starting the assignment.
 
 5. Choose the repository visibility specified by your instructor.
 6. Click **Create repository**.
-
-![Repo Creation](./docs/imgs/gitHub-repo-setup.png)
+   
+<img src="./docs/imgs/gitHub-repo-setup.png" alt="Repo Creation" width="720px">
 
 ---
 ### 2. Create Your Local Project Folder
@@ -90,8 +90,8 @@ We use a layered configuration to manage files. You must manually "activate" the
 
 #### A. Activate the Root Attributes (LFS & SmartMerge)
 The repository root contains a file named `Unity.gitattributes`. This contains the rules for Large File Storage (LFS) and the SmartMerge logic you just configured.
-1.  Locate `Unity.gitattributes` in the repository root.
-2.  RENAME it to `.gitattributes`.
+1.  Locate **`Unity.gitattributes`** in the repository root.
+2.  RENAME it to **`.gitattributes`**.
     
 > [!NOTE]
 > This file must stay in the root folder to work.
@@ -99,9 +99,9 @@ The repository root contains a file named `Unity.gitattributes`. This contains t
 > 
 
 #### B. The Unity Project Ignore Rules
-1.  Locate the `Unity.gitignore` file (also in the root folder).
+1.  Locate the **`Unity.gitignore`** file (also in the root folder).
 2.  **MOVE** this file into your `ProjectName-Unity` folder.
-3.  **RENAME** it from `Unity.gitignore` to `.gitignore`.
+3.  **RENAME** it from `Unity.gitignore` to **`.gitignore`**.
     
 > [!WARNING]
 > This file must live **inside the Unity project folder**, not the root.
@@ -128,7 +128,7 @@ This repository template includes a setup script designed to automate your envir
 
 Example:
 ```bash
-cd D/Students/YourName/CSG3023/26sp-csg3023-sandbox-YourGitHubUserName
+cd D/Students/YourName/CSGXXX/LastName-ProjectName
 ```
 > [!NOTE]
 > If you set up or cloned this repository using an **IDE** (Rider, VS Code, etc.),  
