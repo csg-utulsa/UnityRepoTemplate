@@ -40,14 +40,19 @@ Follow these steps **in order** before starting the assignment.
 ### 1. Create Your Repository from the Template
 1. Open the CSG Repository Template on GitHub.
 2. Click **Use this template**, then select **Create a new repository**.
+ 
+![Use this template](./docs/imgs/gitHub-use-template.png)
+
 3. Under **Owner**, select the correct **GitHub organization for your course** _(i.e., CSG-3023, CSG-3813, etc.) 
 4. Enter your repository name using the following format:
     - **`LastName-ProjectName`**
     - Replace `LastName` with your last name and `ProjectName` with the assignment or project name.
     -  **Example:** If your last name is Dent and the project is Sandbox, name your repository: `Dent-Sandbox`
 
-6. Choose the repository visibility specified by your instructor.
-7. Click **Create repository**.
+5. Choose the repository visibility specified by your instructor.
+6. Click **Create repository**.
+
+![Repo Creation](./docs/imgs/gitHub-repo-setup.png)
 
 ---
 ### 2. Create Your Local Project Folder
