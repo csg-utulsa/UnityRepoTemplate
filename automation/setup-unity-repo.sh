@@ -6,9 +6,22 @@ set -e
 echo "===================================================="
 echo "          UNITY REPOSITORY INITIALIZATION           "
 echo "===================================================="
+# ---------------------------------------------------------
+# SECTION 1: SETTING UP GIT LFS
+# ---------------------------------------------------------
+echo ""
+echo ">>> SECTION 2: Initializing Git LFS..."
+
+if command -v git-lfs &> /dev/null; then
+    git lfs install --skip-repo
+    echo "✅ SUCCESS: Git LFS hooks and filters initialized."
+else
+    echo "⚠️  WARNING: Git LFS is not installed on this system."
+    echo "    Please download and install it from https://git-lfs.com/"
+fi
 
 # ---------------------------------------------------------
-# SECTION 1: SETTING GIT AUTOMATION (BRANCH & COMMIT RULES)
+# SECTION 2: SETTING GIT AUTOMATION (BRANCH & COMMIT RULES)
 # ---------------------------------------------------------
 echo ""
 echo ">>> SECTION 1: Setting up Git Automation..."
@@ -28,19 +41,7 @@ else
     exit 1
 fi
 
-# ---------------------------------------------------------
-# SECTION 2: SETTING UP GIT LFS
-# ---------------------------------------------------------
-echo ""
-echo ">>> SECTION 2: Initializing Git LFS..."
 
-if command -v git-lfs &> /dev/null; then
-    git lfs install
-    echo "✅ SUCCESS: Git LFS hooks and filters initialized."
-else
-    echo "⚠️  WARNING: Git LFS is not installed on this system."
-    echo "    Please download and install it from https://git-lfs.com/"
-fi
 
 # ---------------------------------------------------------
 # SECTION 3: SETTING UP UNITY YML MERGE (SMARTMERGE)

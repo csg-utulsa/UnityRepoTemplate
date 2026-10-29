@@ -35,4 +35,7 @@ if ! echo "$BRANCH_NAME" | grep -Eq "$BRANCH_PATTERN"; then
   exit 1
 fi
 
+# 3. Delegate to Git LFS pre-push check
+command -v git-lfs >/dev/null 2>&1 && git lfs pre-push "$@"
+
 exit 0
