@@ -68,7 +68,36 @@ Your local repository folder should match your GitHub repository name.
 
 ---
 
-### 3. Create the Unity Project
+### 3. Create the Setup Branch
+
+The project uses a protected Git workflow. The `main` branch is reserved for stable, approved project changes and cannot be pushed to directly.
+
+All development must take place on a **working branch**. Changes are submitted to `main` through a **Pull Request (PR)** for review and merging.
+
+Immediately after cloning the repository, create a setup branch before making any project changes.
+
+#### Option 1: Using GitHub Desktop
+
+1. Open the repository in GitHub Desktop.
+2. Click the current branch name in the top toolbar.
+3. Select **New Branch**.
+4. Enter `setup/unity-project` as the branch name.
+5. Click **Create Branch**.
+
+#### Option 2: Using Git Bash
+
+1. Open Git Bash in the repository folder.
+2. Run the following command:
+
+```bash
+git switch -c setup/unity-project
+```
+
+This command creates a new branch named `setup/unity-project` from the currently checked-out branch (`main`) and switches your working copy to it.
+
+---
+
+### 4. Create the Unity Project
 
 1. Open **Unity Hub**.
 2. Click **+ New Project**.
@@ -114,7 +143,7 @@ The repository root contains a file named `Unity.gitattributes`. This contains t
 
 ---
 
-### 5. Run the Automation Script
+### 6. Run the Automation Script
 This repository template includes a setup script designed to automate your environment. It handles three critical tasks:
 - **Git Automation (Commit Rules):** Installs a linter that ensures your commit messages follow the project's categorization (e.g., `feat:`, `fix:`, `refactor:`).
 - **Branch Protection & Naming (Pre-Push):** Installs a "gatekeeper" that prevents you from pushing to the wrong branch (`main`/`release`) and ensures your branch name follows the `type/description` format.
@@ -168,49 +197,35 @@ cd D/Students/YourName/CSGXXX/LastName-ProjectName
 
 ---
 
-### 6. Create Your Initial Setup Branch
-The project automation enforces a Git workflow where the `main` branch is protected and cannot be pushed to directly. 
-All development must be placed on a working branch, and changes to `main` should be submitted via a **pull request (PR)** before merging into `main`.
+### 7. Commit Initial Repository Setup
 
-The repository automation enforces the following Git workflow:
-- **Commit messages:** Follow the required format, such as `feat: add player movement` rather than `added player movement`.
-- **Branch names:** Follow the `type/description` format, such as `init/setup`, `feat/player-movement`, or `fix/inventory-bug`.
-- **Pull requests:** Push your changes to your working branch and submit a PR to merge them into `main`. Direct pushes to `main` are blocked.
+Before moving on to the Unity project configuration, save your initial repository setup changes in a Git commit.
 
-After the automation script finishes successfully, create your initial setup branch before making any project setup commits.
-
-#### A. Create and Switch to Your Branch
+#### A. Stage Your Changes
 
 From the repository root, run:
 
-```
-git switch -c init/setup
-```
-
-This command creates a branch named `init/setup` and switches your working copy to it.
-
-#### B. Verify Your Branch
-
-Run the following command to confirm that you are on the correct branch:
-
-```
-git branch --show-current
+```bash
+git add .
 ```
 
-The terminal should display:
+This stages your changes so they can be included in a commit.
 
-```
-init/setup
+#### B. Commit Your Changes
+Run the following command:
+
+```bash
+git commit -m "configured: initial project setup"
 ```
 
-> [!IMPORTANT]\
-> **Create this branch before making your initial setup commits.**
-> 
-> Do not commit or attempt to push your setup work directly to `main`; otherwise, you will get an error. 
+This saves your staged changes in your local Git history.
+
+> [!IMPORTANT]
+>  **All commit messages must follow the required commit message standard.** Refer to the project wiki's **Commit Naming Convention** for formatting rules and examples.
 
 ---
 
-### 7. Import the CSG Project Setup Package
+### 8. Import the CSG Project Setup Package
 
 Instead of manually installing the hierarchy folder package and configuring the project yourself, this repository includes **`CSG-ProjectSetup.unitypackage`**. This package contains the CSG project setup tools used to standardize your Unity project.
 
@@ -257,7 +272,7 @@ The setup tools automate the following tasks:
 
 ---
 
-### 8. Verify Your Setup
+### 9. Verify Your Setup
 
 Before committing your initial setup work, verify that each step has been completed successfully.
 
@@ -275,9 +290,12 @@ Once everything is verified, commit and push your setup work before beginning th
 
 ---
 
-### 9. Commit and Push Your Setup Work
+### 10. Commit and Push Your Setup Work
 
 After completing and verifying the repository and Unity setup, save your changes in Git and push your branch to GitHub. You will then open a pull request (PR) to merge your setup work into `main`.
+
+> [!NOTE]
+> The steps below use **Git Bash** commands. You can also complete the same workflow using **GitHub Desktop**.
 
 #### A. Review and Commit Your Changes
 
@@ -296,99 +314,56 @@ git add .
 Commit your staged changes using the required commit-message format:
 
 ```
-git commit -m "chore: configure initial Unity project"
+git commit -m "configured: Unity project setup"
 ```
 
-The `chore` prefix identifies setup or maintenance work. Use a message that accurately describes the changes included in the commit.
+> [!IMPORTANT]
+>  **All commit messages must follow the required commit message standard.** Refer to the project wiki's **Commit Naming Convention** for formatting rules and examples.
 
 #### B. Push Your Branch to GitHub
 
-Push your `init/setup` branch to the remote repository:
+Push your `setup/unity-project` branch to the remote repository:
 
 ```
-git push -u origin init/setup
+git push -u origin setup/unity-project
 ```
 
-This command pushes your local `init/setup` branch to the remote named `origin` and sets its upstream tracking branch. For subsequent pushes from this branch, you can use:
+This pushes your local branch to GitHub and establishes an upstream tracking branch. 
 
+For subsequent pushes from this branch, you can simply use:
 ```
 git push
 ```
 
 #### C. Open a Pull Request
+Open your repository on GitHub and create a Pull Request:
+1. Navigate to the **Pull Requests** tab.
+2. Click **New Pull Request**.
+3. Set the base branch to main and the compare branch to `setup/unity-project`.
+4. Review the changes included in the Pull Request.
+5. Click **Create Pull Request**.
+   
+Once your Pull Request has been reviewed and merged, your initial repository and Unity project setup will be part of main.
 
-After pushing your branch:
+> [!IMPORTANT]
+> **Do not attempt to push directly to `main`**. All changes must be committed to your **working branch** and merged through a **Pull Request**.
 
-1. Open your repository on GitHub.
-2. Create a pull request with `main` as the **base branch** and `init/setup` as the **compare branch**.
-3. Review the changes included in the pull request.
-4. Complete any required checks or review steps.
-5. Merge the pull request according to the course workflow.
-
----
-
-### 10. Implement the Following Workflow 
-
-For each assignment, feature, or bug fix, follow this workflow to ensure your branch starts from the latest `main` and your changes are reviewed before being merged.
-
-1. **Update `main`.** Switch to `main` and pull the latest changes from GitHub.
-
-   ```bash
-   git switch main
-   git pull origin main
-   ```
-
-2. **Create a working branch.** Create a new branch from the updated `main` using the required `type/description` naming format.
-
-   ```bash
-   git switch -c feat/player-movement
-   ```
-
-3. **Complete your work.** Make changes on your working branch. Stage and commit your changes regularly using the required commit-message format.
-
-   ```bash
-   git add .
-   git commit -m "feat: add player movement"
-   ```
-
-4. **Push your branch to GitHub.** Push your branch when you begin sharing your work and continue pushing your commits as development progresses.
-
-   ```bash
-   git push -u origin feat/player-movement
-   ```
-
-   The first push sets the upstream tracking branch. For subsequent pushes from the same branch, use `git push`.
-
-5. **Continue working until the task is complete.** Test your changes, fix issues, and commit and push additional updates to the same branch. You do not need to create a new branch for every commit.
-
-6. **Open a pull request (PR).** When the feature or task is complete, stable, and ready for review, open a PR on GitHub to merge your working branch into `main`.
-
-7. **Complete the review and checks.** Address requested changes and resolve any failing checks. Once all required reviews and checks are complete, merge the PR according to the course workflow.
-
-**Example branch names:**
-- `feat/player-movement` — new feature
-- `fix/inventory-bug` — bug fix
-- `init/setup` — initial project setup
-
->[!NOTE]
-> **A few Git accuracy notes**
-> - `git add .` stages changes under the current directory. Review `git status` first, and check the staged files before committing if needed with `git diff --cached`.
-> - `git switch -c branch-name` creates a new branch and switches to it. Use it only when that branch does not already exist locally.
-> - `git push -u origin branch-name` assumes the repository's remote is named `origin`. You can verify the remote with `git remote -v`.
-> - Pull requests do not automatically mean students can merge them. GitHub branch protection, required reviews, and course-specific rules determine whether the merge is allowed. The instructions should reflect your actual course workflow.
 
 ---
 
 ## ✅ Ready to Begin
 
-Once your setup work has been pushed and your pull request has been submitted, your repository and Unity project are ready for assignment work.
+Your repository and Unity project are now configured and ready for assignment work!
 
-From this point forward:
+For future development, follow this Git workflow:
 
-- Follow the assignment instructions.
-- Create a separate branch for each new feature, fix, or task as appropriate.
-- Commit frequently using the required commit-message format.
-- Submit pull requests when merging work into `main`.
-- Keep your repository, project files, and Unity scene hierarchies organized and professional.
+- **Start with `main`:** Pull the latest changes from GitHub before starting new work.
+- **Create a working branch:** Use the required branch naming convention for each new feature, fix, or task.
+- **Commit and push regularly:** Save your progress using the required commit-message format.
+- **Submit a Pull Request:** Once your work is complete and ready for review, submit a PR to merge it into `main`.
+
+You do not need to create a new branch for every commit. Continue using the same branch for related work until it is ready to be merged.
+
+Refer to the project wiki's **Branch Naming Convention** and **Commit Naming Convention** for formatting rules and examples.
 
 **Get set up, stay organized, and get creative!**
