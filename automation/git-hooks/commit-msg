@@ -3,8 +3,8 @@
 COMMIT_MSG_FILE=$1
 COMMIT_MSG=$(head -n 1 "$COMMIT_MSG_FILE")
 
-# Allowed commit types
-TYPES="init|feat|fix|docs|refactor|test|chore|opt|build|revert|hotfix"
+# Allowed past-tense action verbs
+VERBS="added|fixed|updated|removed|refactored|documented|tested|configured"
 
 # Pattern: type: short description
 PATTERN="^($TYPES): .+"
@@ -14,29 +14,27 @@ if ! echo "$COMMIT_MSG" | grep -Eq "$PATTERN"; then
   echo "❌ Invalid commit message format."
   echo ""
   echo "Expected format:"
-  echo "  <type>: <short description>"
+  echo "  <verb>: <short description>"
   echo ""
-  echo "Choose the type based on what you DID:"
+  echo "Use a past-tense action verb to describe what you DID:"
   echo ""
-  echo "  init     - first-time setup or initialization"
-  echo "  feat     - added new behavior, system, class, or content"
-  echo "  fix      - fixed a bug, typo, broken logic, or placement"
-  echo "  hotfix   - emergency or temporary fix"
-  echo "  refactor - restructured code or scenes (no behavior change)"
-  echo "  opt      - improved performance or efficiency"
-  echo "  docs     - documentation or comments only"
-  echo "  chore    - maintenance, cleanup, tooling, or assets"
-  echo "  test     - added or updated tests or playtesting"
-  echo "  build    - build system, CI, or export settings"
-  echo "  revert   - undo a previous commit"
+  echo "  added       - introduced new functionality or content"
+  echo "  fixed       - corrected a bug or unexpected behavior"
+  echo "  updated     - modified or improved existing functionality"
+  echo "  removed     - deleted functionality, content, or files"
+  echo "  refactored  - restructured code without changing behavior"
+  echo "  documented  - added or updated documentation"
+  echo "  tested      - added or modified tests"
+  echo "  configured  - modified project settings or configuration"
   echo ""
   echo "Examples:"
-  echo "  feat: add health regeneration system"
-  echo "  fix: correct enemy spawn location"
-  echo "  refactor: reorganize AI scripts by behavior"
-  echo "  docs: update README with setup instructions"
+  echo "  added: player movement"
+  echo "  fixed: incorrect enemy spawn location"
+  echo "  updated: player movement speed"
+  echo "  refactored: reorganized AI scripts"
+  echo "  documented: player controller settings"
   echo ""
-  echo "Tip: Ask yourself — why does this commit exist?"
+  echo "💡 Tip: Ask yourself — what did I change in this commit?"
   echo ""
   exit 1
 fi
