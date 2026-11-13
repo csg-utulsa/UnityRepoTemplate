@@ -3,9 +3,11 @@
 # Retrieve current branch name
 BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
 
-# Allowed branch prefix types matching your commit types
-TYPES="init|feat|fix|docs|refactor|test|chore|opt|build|revert|hotfix"
-BRANCH_PATTERN="^($TYPES)/.+"
+# Allowed branch prefixes
+BRANCH_TYPES="feature|level|ui|audio|bug|setup"
+
+# Pattern: type/noun-or-noun-phrase
+BRANCH_PATTERN="^($BRANCH_TYPES)/[a-z0-9]+(-[a-z0-9]+)*$"
 
 # Protected branches that cannot be pushed to directly
 PROTECTED_BRANCHES="^(main|master|release)$"
@@ -14,28 +16,49 @@ PROTECTED_BRANCHES="^(main|master|release)$"
 if echo "$BRANCH_NAME" | grep -Eq "$PROTECTED_BRANCHES"; then
   echo ""
   echo "❌ Direct push to '$BRANCH_NAME' is blocked."
-  echo "Please create a feature/bugfix branch and open a Pull Request."
+  echo "Changes must be made on a separate working branch"
+  echo "and merged through a Pull Request."
   echo ""
   exit 1
 fi
 
-# 2. Enforce branch naming pattern (e.g., feat/health-system)
+# 2. Enforce approved branch prefixes and naming convention
 if ! echo "$BRANCH_NAME" | grep -Eq "$BRANCH_PATTERN"; then
   echo ""
-  echo "❌ Invalid branch name format: '$BRANCH_NAME'"
+  echo "❌ Invalid branch name: '$BRANCH_NAME'"
   echo ""
   echo "Expected format:"
   echo "  <type>/<description>"
   echo ""
+  echo "Choose a branch type based on the work being organized:"
+  echo ""
+  echo "  feature/  - gameplay systems, mechanics, or features"
+  echo "  level/    - game levels, environments, or playable areas"
+  echo "  ui/       - menus, HUDs, and player-facing interfaces"
+  echo "  audio/    - sound effects, music, and audio systems"
+  echo "  bug/      - specific bugs or unexpected behavior"
+  echo "  setup/    - project foundations and development environment"
+  echo ""
   echo "Examples:"
-  echo "  feat/health-system"
-  echo "  fix/enemy-spawn-bug"
-  echo "  refactor/ai-architecture"
+  echo "  feature/player-controller"
+  echo "  level/forest-village"
+  echo "  ui/inventory-menu"
+  echo "  audio/footstep-system"
+  echo "  bug/puzzle-reset"
+  echo "  setup/unity-project"
+  echo ""
+  echo "Use lowercase letters, numbers, and hyphens."
+  echo "The description should be a short, descriptive noun or noun phrase."
+  echo ""
+  echo "💡 Tip: Branches organize the work; commits record the progress."
   echo ""
   exit 1
 fi
 
 # 3. Delegate to Git LFS pre-push check
-command -v git-lfs >/dev/null 2>&1 && git lfs pre-push "$@"
+if command -v git-lfs >/dev/null 2>&1; then
+  git lfs pre-push "$@"
+  exit $?
+fi
 
 exit 0
