@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 # Exit immediately if a command fails
 set -e
@@ -89,16 +89,16 @@ echo ""
 echo "----------------------------------------------------"
 echo "VERIFYING SETUP..."
 
-# Test a simulated path inside the Unity subfolder so Git reads
-# .gitattributes whether it's at the repo root OR inside ProjectName-Unity/
-CHECK=$(git check-attr merge "$UNITY_SUBDIR/Assets/Scenes/test.unity")
+# We check a "fake" path. Git's check-attr will still tell us 
+# which driver it *would* use based on the .gitattributes rules.
+CHECK=$(git check-attr merge any-folder/any-subfolder/test.unity)
 
 echo "Result: $CHECK"
 
 if [[ $CHECK == *"unityyamlmerge"* ]]; then
-    echo "✅ VERIFIED: Unity SmartMerge is active for .unity files in $UNITY_SUBDIR!"
+    echo "✅ VERIFIED: Unity SmartMerge is active for all .unity files in this repo!"
 else
     echo "⚠️  WARNING: .gitattributes rules not detected."
-    echo "    Ensure your .gitattributes file is in the repo root or inside '$UNITY_SUBDIR/'."
+    echo "   Ensure your .gitattributes file is in the repository root."
 fi
 echo "===================================================="
