@@ -7,7 +7,7 @@ COMMIT_MSG=$(head -n 1 "$COMMIT_MSG_FILE")
 VERBS="added|fixed|updated|removed|refactored|documented|tested|configured"
 
 # Pattern: type: short description
-PATTERN="^($TYPES): .+"
+PATTERN="^($VERBS): .+"
 
 if ! echo "$COMMIT_MSG" | grep -Eq "$PATTERN"; then
   echo ""
