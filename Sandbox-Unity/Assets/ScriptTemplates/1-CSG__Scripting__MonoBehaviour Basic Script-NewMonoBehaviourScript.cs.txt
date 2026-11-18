@@ -1,0 +1,72 @@
+﻿/************************************************************
+* COPYRIGHT:  Year
+* PROJECT:    Name of Project or Assignment
+* FILE NAME:  #SCRIPTNAME#.cs
+* DESCRIPTION: What project or system does this file belong to?
+*                    
+* REVISION HISTORY:
+* Date [YYYY/MM/DD] | Author | Comments
+* ------------------------------------------------------------
+* 2000/01/01 | Your Name | Created class
+*
+************************************************************/
+
+using UnityEngine;
+
+#ROOTNAMESPACEBEGIN#
+
+/// <summary>
+/// What does this specific class do when I reference it in C#?
+/// </summary>
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    #region Fields & Properties
+
+    // Declare serialized fields and private variables here
+
+    #endregion
+
+
+   #region Initialization & Activation
+
+    // Awake is called once on initialization
+    private void Awake()
+    {
+        #NOTRIM#
+    }//end Awake()
+
+    // Start is called once before the first Update
+    private void Start()
+    {
+        #NOTRIM#
+    }//end Start()
+    
+   #endregion
+   
+   #region Updates
+
+    // Update is called once per frame
+    private void Update()
+    {
+        #NOTRIM#
+    }//end Update()
+    
+    #endregion
+
+
+    #region [ Feature / Domain Name ]
+
+    /// <summary>
+    /// A custom method example.
+    /// </summary>
+    /// <param name="exampleParameter">A parameter that demonstrates passing data to the method.</param>
+    private void CustomMethod(int exampleParameter)
+    {
+        #NOTRIM#
+    }//end CustomMethod(int)
+
+    #endregion
+    
+
+}//end #SCRIPTNAME#
+#ROOTNAMESPACEEND#

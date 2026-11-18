@@ -1,0 +1,109 @@
+﻿/************************************************************
+* COPYRIGHT:  Year
+* PROJECT:    Name of Project or Assignment
+* FILE NAME:  #SCRIPTNAME#.cs
+* DESCRIPTION: What project or system does this file belong to?
+*                    
+* REVISION HISTORY:
+* Date [YYYY/MM/DD] | Author | Comments
+* ------------------------------------------------------------
+* 2000/01/01 | Your Name | Created class
+*
+************************************************************/
+
+using UnityEngine;
+
+#ROOTNAMESPACEBEGIN#
+
+/// <summary>
+/// What does this specific class do when I reference it in C#?
+/// </summary>
+public class #SCRIPTNAME# : MonoBehaviour
+{
+    #region Fields & Properties
+
+    // Declare serialized fields and private variables here
+
+    #endregion
+
+
+   #region Initialization
+
+    // Awake is called once on initialization; used to initialize any variables or game state before the game starts.
+    private void Awake()
+    {
+        #NOTRIM#
+    }//end Awake()
+    
+    // OnEnable is called whenever the component becomes enabled; use it for subscriptions and activation setup.
+    private void OnEnable()
+    {
+        #NOTRIM#
+    }//end OnEnable()
+
+    // Start is called once before the first Update; used for setup that depends on other objects being initialized.
+    private void Start()
+    {
+        #NOTRIM#
+    }//end Start()
+    
+   #endregion
+   
+   #region Game Updates
+   
+   // FixedUpdate is called at a fixed time interval; use it for physics calculations and Rigidbody movement.
+   private void FixedUpdate()
+   {
+       #NOTRIM#
+   }//end FixedUpdate()
+
+    // Update is called once per frame; used for frame-based gameplay logic and input processing.
+    private void Update()
+    {
+        #NOTRIM#
+    }//end Update()
+    
+    #endregion
+    
+    #region Rendering & Post-Frame Processing
+    
+    // LateUpdate is called once per frame after Update; use it for logic that should occur after standard frame updates.
+    private void LateUpdate()
+    {
+        #NOTRIM#
+    }//end LateUpdate()
+    
+    #endregion
+    
+    #region Deactivation & Teardown
+    
+    // OnDisable is called when the component becomes disabled; use it to unsubscribe from events and pause active behavior.
+    private void OnDisable()
+    {
+        #NOTRIM#
+    }//end OnDisable()
+    
+    // OnDestroy is called when the component is being destroyed; use it for final cleanup and releasing resources.
+    private void OnDestroy()
+    {
+        #NOTRIM#
+    }//end OnDestroy()
+    
+    #endregion
+
+    #region Feature Logic
+
+    /// <summary>
+    /// A custom method example.
+    /// </summary>
+    /// <param name="exampleParameter">A parameter that demonstrates passing data to the method.</param>
+    private void CustomMethod(int exampleParameter)
+    {
+        #NOTRIM#
+    }//end CustomMethod(int)
+
+    #endregion
+    
+
+}//end #SCRIPTNAME#
+#ROOTNAMESPACEEND#
